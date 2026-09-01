@@ -36,7 +36,7 @@ app.post('/api/review', async (req, res) => {
                     content: code
                 }
             ],
-            model: 'llama-3.3-70b-versatile',
+            model: 'llama-3.1-8b-instant',
         });
 
         const review = completion.choices[0]?.message?.content || 'No review generated.';

@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey: process.env.GROQ_API_KEY || "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"
 });
 
 // Root wake-up endpoint
@@ -21,21 +21,20 @@ app.get('/', (req, res) => {
 app.post('/api/review', async (req, res) => {
     try {
         const { code } = req.body;
-
         if (!code) {
-            return res.status(400).json({ error: 'Code content is required.' });
+            return res.status(400).json({ error: 'No code provided' });
         }
 
         const completion = await groq.chat.completions.create({
             messages: [
                 {
                     role: 'system',
-                    content: 'You are an expert AI code reviewer. Review the provided code for bugs, security risks, clean code principles, and performance improvements.',
+                    content: 'You are an expert AI code reviewer. Review the provided code for bugs, performance issues, readability, and best practices. Provide structured, actionable feedback.'
                 },
                 {
                     role: 'user',
-                    content: code,
-                },
+                    content: code
+                }
             ],
             model: 'llama-3.3-70b-versatile',
         });
@@ -43,8 +42,8 @@ app.post('/api/review', async (req, res) => {
         const review = completion.choices[0]?.message?.content || 'No review generated.';
         res.json({ review });
     } catch (error) {
-        console.error('Error fetching code review:', error);
-        res.status(500).json({ error: 'Failed to process code review.' });
+        console.error('Error in code review:', error);
+        res.status(500).json({ error: error.message || 'Failed to review code' });
     }
 });
 

@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@babel/generator": "^8.0.0",
+    "@babel/parser": "^8.0.4",
+    "@google/genai": "^2.19.0",
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "groq-sdk": "^1.6.0",
+    "js-beautify": "^2.0.3",
+    "prettier": "^3.9.6"
+  }
+}

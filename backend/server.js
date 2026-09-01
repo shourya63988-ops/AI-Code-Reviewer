@@ -13,7 +13,6 @@ const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY || "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"
 });
 
-// Root wake-up endpoint
 app.get('/', (req, res) => {
     res.send('Backend is awake and running!');
 });

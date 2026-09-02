@@ -34,7 +34,7 @@ app.post('/api/review', async (req, res) => {
                     content: `Language: ${language || 'Auto-detect'}\n\nCode:\n${code}` 
                 }
             ],
-            model: 'mixtral-8x7b-32768',
+            model: 'openai/gpt-oss-120b',
         });
 
         const review = completion.choices[0]?.message?.content || 'No review generated.';

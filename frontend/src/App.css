@@ -81,8 +81,42 @@ h2 {
   border: 1px solid #323238;
   border-radius: 4px;
   padding: 15px;
-  min-height: 300px;
+  min-height: 400px;
+  max-height: 600px;
   overflow-y: auto;
+  line-height: 1.6;
+}
+
+/* Markdown Specific Styling */
+.review-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.review-content th, .review-content td {
+  border: 1px solid #323238;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.review-content th {
+  background-color: #202024;
+}
+
+.review-content pre {
+  background-color: #202024;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.review-content code {
+  font-family: monospace;
+  background-color: #202024;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .placeholder {

@@ -15,6 +15,7 @@ function App() {
     setReview('');
 
     try {
+      // REPLACE WITH YOUR ACTUAL BACKEND URL BELOW
       const response = await axios.post('https://ai-code-reviewer-backend-571u.onrender.com/api/review', {
         code,
         language

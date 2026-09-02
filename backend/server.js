@@ -34,7 +34,7 @@ app.post('/api/review', async (req, res) => {
                     content: `Language: ${language || 'Auto-detect'}\n\nCode:\n${code}` 
                 }
             ],
-            model: 'llama3-70b-8192', // <-- Fixed model name here
+            model: 'llama-3.1-8b-instant', // Active Groq model ID
         });
 
         const review = completion.choices[0]?.message?.content || 'No review generated.';

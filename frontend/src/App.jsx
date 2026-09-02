@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './App.css';
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
     setReview('');
 
     try {
-      // UPDATED BACKEND URL:
       const response = await axios.post('https://ai-code-reviewer-backend-0njd.onrender.com/api/review', {
         code,
         language
@@ -70,7 +70,7 @@ function App() {
           <h2>Review Result</h2>
           <div className="review-content">
             {review ? (
-              <ReactMarkdown>{review}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{review}</ReactMarkdown>
             ) : (
               <p className="placeholder">No review generated yet. Submit your code to start.</p>
             )}

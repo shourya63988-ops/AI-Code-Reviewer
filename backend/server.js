@@ -27,7 +27,7 @@ app.post('/api/review', async (req, res) => {
             messages: [
                 { 
                     role: 'system', 
-                    content: 'You are an expert code reviewer. Analyze the code for bugs and offer improvements.' 
+                    content: 'You are an expert code reviewer. Provide bug analysis, readability advice, and optimized code.' 
                 },
                 { 
                     role: 'user', 

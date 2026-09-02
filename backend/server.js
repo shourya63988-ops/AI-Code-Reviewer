@@ -34,7 +34,7 @@ app.post('/api/review', async (req, res) => {
                     content: `Language: ${language || 'Auto-detect'}\n\nCode:\n${code}` 
                 }
             ],
-            model: 'llama-3.3-70b-versatile',
+            model: 'llama3-70b-8192', // <-- Fixed model name here
         });
 
         const review = completion.choices[0]?.message?.content || 'No review generated.';

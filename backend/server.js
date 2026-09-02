@@ -27,14 +27,14 @@ app.post('/api/review', async (req, res) => {
             messages: [
                 { 
                     role: 'system', 
-                    content: 'You are an expert code reviewer. Analyze the code for bugs, improvements, and best practices.' 
+                    content: 'You are an expert code reviewer. Provide bug analysis and optimized code.' 
                 },
                 { 
                     role: 'user', 
                     content: `Language: ${language || 'Auto-detect'}\n\nCode:\n${code}` 
                 }
             ],
-            model: 'llama-3.3-70b-versatile',
+            model: 'mixtral-8x7b-32768',
         });
 
         const review = completion.choices[0]?.message?.content || 'No review generated.';

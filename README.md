@@ -1,62 +1,17 @@
-\# ⚡ Genius AI Code Reviewer
+# 🤖 AI Code Reviewer
 
+An automated, AI-powered code review application that analyzes code snippets for bugs, security vulnerabilities, and performance bottlenecks in real time.
 
+## 🚀 Live Demo
+- **Frontend App:** [https://ai-code-reviewer-app-532i.onrender.com](https://ai-code-reviewer-app-532i.onrender.com)
+- **Backend Service:** [https://ai-code-reviewer-backend-0njd.onrender.com](https://ai-code-reviewer-backend-0njd.onrender.com)
 
-An intelligent full-stack code analysis application powered by \*\*React\*\*, \*\*Node.js\*\*, \*\*Express\*\*, and the \*\*Google Gemini API\*\*.
+## ✨ Features
+- **Real-time Analysis:** Instant automated feedback powered by Groq's `llama-3.3-70b-versatile` model.
+- **Rich Markdown Output:** Formatted bug tables, colored code syntax highlighting, and structured summaries.
+- **Multi-Language Support:** Python, JavaScript, Java, and C++.
 
-
-
-\---
-
-
-
-\## 🚀 Features
-
-
-
-\* 💻 \*\*Monaco Code Editor:\*\* Integrated VS Code-like editing experience with syntax highlighting and line numbers.
-
-\* 🤖 \*\*AI-Powered Code Analysis:\*\* Evaluates code for security vulnerabilities, performance optimization, and readability.
-
-\* 📊 \*\*Structured Metric Scoring:\*\* Generates automated 10/10 scores for Security, Performance, and Readability.
-
-\* 💡 \*\*Code Refactoring Suggestions:\*\* Generates clean, refactored code snippets ready to copy.
-
-\* 📋 \*\*One-Click Copy:\*\* Easily copy suggested code fixes directly to your clipboard.
-
-
-
-\---
-
-
-
-\## 🛠️ Tech Stack
-
-
-
-\* \*\*Frontend:\*\* React, Vite, `@monaco-editor/react`, CSS3
-
-\* \*\*Backend:\*\* Node.js, Express, CORS
-
-\* \*\*AI Integration:\*\* `@google/genai` (Google Gemini API)
-
-
-
-\---
-
-
-
-\## 📦 Getting Started
-
-
-
-\### 1. Set up Backend
-
-```bash
-
-cd backend
-
-npm install
-
-node server.js
-
+## 🛠️ Tech Stack
+- **Frontend:** React, Vite, Axios, React-Markdown, Remark-GFM, React-Syntax-Highlighter
+- **Backend:** Node.js, Express, Groq SDK
+- **Deployment:** Render (Static Site + Web Service)

@@ -1,93 +1,78 @@
-import React, { useState } from 'react';
-
-const BACKEND_URL = 'https://ai-code-reviewer-backend-0njd.onrender.com';
+import { useState } from 'react';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import './App.css';
 
 function App() {
   const [code, setCode] = useState('');
-  const [language, setLanguage] = useState('javascript');
+  const [language, setLanguage] = useState('python');
   const [review, setReview] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  const handleAnalyze = async () => {
-    if (!code.trim()) {
-      setError('Please enter some code first.');
-      return;
-    }
-
+  const handleReview = async () => {
+    if (!code.trim()) return;
     setLoading(true);
-    setError('');
     setReview('');
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/review`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ code, language }),
+      const response = await axios.post('https://ai-code-reviewer-backend-571u.onrender.com/api/review', {
+        code,
+        language
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate review');
-      }
-
-      setReview(data.review);
-    } catch (err) {
-      setError(err.message || 'An unexpected error occurred.');
+      setReview(response.data.review);
+    } catch (error) {
+      console.error(error);
+      setReview(error.response?.data?.error || 'Failed to connect to review server.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '40px auto', fontFamily: 'sans-serif', padding: '0 20px' }}>
-      <h1 style={{ textAlign: 'center' }}>🤖 AI Code Reviewer</h1>
-      
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-        <div style={{ flex: '1', minWidth: '300px' }}>
-          <h2>Submit Code</h2>
-          
-          {error && (
-            <div style={{ color: 'red', padding: '10px', background: '#ffe6e6', borderRadius: '4px', marginBottom: '10px' }}>
-              {error}
-            </div>
-          )}
+    <div className="container">
+      <header className="header">
+        <h1>🤖 AI Code Reviewer</h1>
+      </header>
 
+      <div className="main-content">
+        <div className="editor-section">
+          <h2>Submit Code</h2>
           <select 
             value={language} 
             onChange={(e) => setLanguage(e.target.value)}
-            style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            className="language-select"
           >
-            <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
             <option value="java">Java</option>
             <option value="cpp">C++</option>
           </select>
 
           <textarea
-            rows="12"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            placeholder="Paste your code here..."
-            style={{ width: '100%', padding: '10px', fontFamily: 'monospace', boxSizing: 'border-box' }}
+            placeholder="Paste your code snippet here..."
+            className="code-input"
+            rows={15}
           />
 
           <button 
-            onClick={handleAnalyze} 
+            onClick={handleReview} 
             disabled={loading}
-            style={{ marginTop: '10px', padding: '10px 20px', width: '100%', cursor: 'pointer' }}
+            className="submit-btn"
           >
-            {loading ? 'Analyzing Code (may take up to 40s on wake up)...' : 'Analyze Code'}
+            {loading ? 'Analyzing Code...' : 'Analyze Code'}
           </button>
         </div>
 
-        <div style={{ flex: '1', minWidth: '300px' }}>
+        <div className="review-section">
           <h2>Review Result</h2>
-          <div style={{ background: '#f4f4f4', padding: '15px', minHeight: '280px', borderRadius: '4px', whiteSpace: 'pre-wrap' }}>
-            {review || 'No review generated yet. Submit your code to start.'}
+          <div className="review-content">
+            {review ? (
+              <ReactMarkdown>{review}</ReactMarkdown>
+            ) : (
+              <p className="placeholder">No review generated yet. Submit your code to start.</p>
+            )}
           </div>
         </div>
       </div>
